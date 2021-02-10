@@ -22,22 +22,43 @@ class Rectangle:
     def get_picture(self):
         pic = ''
         
-        if self.width > 50 or self.height > 50:
-            
+        if self.width > 50 or self.height > 50:            
             return 'Too big for picture.'
         
         else:
             for h in range(self.height):
                 pic = pic + '*' * self.width + '\n'
 
-            pic = pic.rstrip()
-
             return pic
     
     def get_amount_inside(self, target):
-        pass
-
+        plan_1 = (self.width//target.height) * (self.height//target.width)
+        plan_2 = (self.width//target.width) * (self.height//target.height)
+        
+        return max(plan_1, plan_2)  
+        
     def __str__(self):
         return f'Rectangle(width={self.width}, height={self.height})'
     
-#class Square:
+
+    
+class Square(Rectangle):
+    
+    def __init__(self, side):
+        self.width = side
+        self.height = side
+        
+    def set_side(self, new_side):
+        self.width = new_side
+        self.height = new_side
+        
+    def set_width(self, new_width):
+        self.width = new_width
+        self.height = new_width    
+        
+    def set_width(self, new_height):
+        self.width = new_height
+        self.height = new_height        
+        
+    def __str__(self):
+        return f'Square(side={self.width})'        
